@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 //INSTANCIANDO UM NOVO SCHEMA(MODELO) caracteristicas q o objeto vai possuir
 const ClientesSchema = new mongoose.Schema({
     nome: {type: String},
-    email: {type: String}, 
+    email: {type: String, required: true}, //faz esse campo ser obrigatorio 
     cpf: {type: String},
     dataNascimento: {type: Date},
     estadoCivil: {type: String},

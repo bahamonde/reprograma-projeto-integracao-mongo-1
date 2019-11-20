@@ -1,12 +1,12 @@
 //Chama bibliotecas usadas no projeto
 const express = require("express")
 const mongoose = require("mongoose") 
-const bodyParser = require("body-parser") 
+const bodyParser = require("body-parser") //
 
 
 const app = express()
 
-// Essa configuracao linka o projeto com o banco
+// Essa configuracao linka o projeto com o banco, se nao tem esse banco, ele cria automaticamente
 mongoose.connect("mongodb://localhost:27017/reprograma", {useNewUrlParser: true});
 
 //faz coneccao e fica escutando para verificar erros
@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 
-app.use("/clientes", clientes)
+app.use("/clientes", clientes) // aqui define que todo endpoint vai ser /cliente
 
 
 module.exports = app
