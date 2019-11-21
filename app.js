@@ -7,7 +7,7 @@ const bodyParser = require("body-parser") //
 const app = express()
 
 // Essa configuracao linka o projeto com o banco, se nao tem esse banco, ele cria automaticamente
-mongoose.connect("mongodb://localhost:27017/reprograma", {useNewUrlParser: true});
+mongoose.connect("mongodb://admin:reprograma1@ds225902.mlab.com:25902/reprogramameli", {useNewUrlParser: true});
 
 //faz coneccao e fica escutando para verificar erros
 let db = mongoose.connection;
