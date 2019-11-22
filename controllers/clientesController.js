@@ -61,6 +61,32 @@ exports.updateCliente = (req, res) => {
       })
 }
 
+const validaFormulario = (campos) => {
+  const schema = {
+    nome: joi.string().min(1).required(),
+    email: joi.number().min(1).required()
+  }
+}
+
+
+exports.deleteCliente = (req, res) => {
+  const idCliente = req.params.id;
+
+  Clientes.findById(idCliente, function(err, cliente){
+    if (err) return res.status(500).send(err);
+
+    if (!cliente){
+      return res.status(200).send({ message: "Infelizmente esse cliente não foi encontrado!!!"});
+    
+    aluna.remove(function(err){
+      if(!err) {
+        res.status(204).send({ message: "Cliente removido com sucesso!!!"});
+      }
+    })
+    
+    }
+  })
+}
 
 
 
