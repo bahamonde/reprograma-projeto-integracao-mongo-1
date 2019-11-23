@@ -50,6 +50,14 @@ exports.getCPF = (req, res) => {
   })
 }
 
+// exports.deleteCliente = (req, res) => {
+//   const cpf = req.params.cpf;  //Por params pq só 1 cliente vai ter esse cpf
+//   Clientes.find({ cpf }, function (err, cliente) {  //mesmo nome na chave e valor não precisa colocar 'cpf:cpf' só um o JS entende
+//     if (err) res.status(500).send(err);
+//     res.status(200).send(cliente)
+//   })
+// }
+
 exports.updateCliente = (req, res) => {
     Clientes.update(
       { cpf: req.params.cpf },
@@ -61,7 +69,7 @@ exports.updateCliente = (req, res) => {
       })
 }
 
-const validaFormulario = (campos) => {
+const validaFormulario = (campos) => {  
   const schema = {
     nome: joi.string().min(1).required(),
     email: joi.number().min(1).required()
@@ -70,21 +78,20 @@ const validaFormulario = (campos) => {
 
 
 exports.deleteCliente = (req, res) => {
-  const idCliente = req.params.id;
+  const cpf = req.params.cpf;
 
-  Clientes.findById(idCliente, function(err, cliente){
-    if (err) return res.status(500).send(err);
+  Clientes.findOne({ cpf }, function(err, cliente){
+    if (err) res.status(500).send(err);
 
     if (!cliente){
       return res.status(200).send({ message: "Infelizmente esse cliente não foi encontrado!!!"});
-    
-    aluna.remove(function(err){
-      if(!err) {
-        res.status(204).send({ message: "Cliente removido com sucesso!!!"});
-      }
-    })
-    
     }
+    cliente.remove(function(err){
+      if(!err) {
+        res.status(200).send({ message: "Cliente removido com sucesso!!!"});
+      }
+    }) 
+    
   })
 }
 

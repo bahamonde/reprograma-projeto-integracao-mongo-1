@@ -7,7 +7,9 @@ const bodyParser = require("body-parser") //
 const app = express()
 
 // Essa configuracao linka o projeto com o banco, se nao tem esse banco, ele cria automaticamente
-mongoose.connect("mongodb://localhost:27017/reprograma", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/reprograma", {useNewUrlParser: true});
+
+mongoose.connect("mongodb+srv://admin:admin123@cluster0-rgedq.mongodb.net/clientes", {useNewUrlParser: true}); //Para subir no seu banco da nuvem
 
 //faz coneccao e fica escutando para verificar erros
 let db = mongoose.connection;
@@ -33,6 +35,8 @@ app.use(function(req, res, next) {
   )
   next()
 })
+
+app.use(express.static("public"));
 
 app.use(bodyParser.json());
 
